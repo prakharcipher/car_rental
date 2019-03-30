@@ -51,7 +51,7 @@ class Landing extends Component {
 						</Col>
 						<Col>
 							<Form.Group style={{width: '50%', margin: 'auto'}}>
-								<DatePicker id="example-datepicker" name="startDate" onChange={this.handleStartDate} selected={this.state.startDate} />
+								<DatePicker id="example-datepicker" name="startDate" minDate={new Date()} onChange={this.handleStartDate} selected={this.state.startDate} />
 							</Form.Group>
 						</Col>
 					</Row>

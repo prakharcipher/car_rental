@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import {Row, CardColumns, Card, Button} from 'react-bootstrap';
 import Car from './car';
 
-const arr = [1,2,3,4,5,6,7,8];
 
 class CarFleet extends Component {
 	render() {
+		console.log("This props ==== ", this.props.cars);
 		return (
 				<Row>
 					<CardColumns>
-					  {arr.map((arr, index) => {
+					  {this.props.cars && this.props.cars[0].carsList.map((car, index) => {
 					  	return (
-					  			<Car key={arr} />
+					  			<Car key={index} carObj={car} selectedDate={this.props.cars[0].date} />
 					  		)
 					  })}
 					</CardColumns>
@@ -20,4 +21,10 @@ class CarFleet extends Component {
 	}
 }
 
-export default CarFleet;
+function mapStateToProps(state) {
+	return {
+		cars: state
+	};
+}
+
+export default connect(mapStateToProps, null)(CarFleet);

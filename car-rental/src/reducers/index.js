@@ -4,14 +4,16 @@ function searchUtility(carsList, action) {
 	const newCars = carsList.filter((car, index) => {
 		return car.location === action.location
 	});
-	console.log("New Cars === ", newCars);
+	return newCars;
 }
 
 const bookingQuery = action => {
 	let {location ,date, cars} = action;
 	const carsList = searchUtility(cars, action);
 	return {
-		carsList
+		carsList,
+		location,
+		date
 	};
 }
 
