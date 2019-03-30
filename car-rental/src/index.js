@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import Landing from './components/Landing';
 import SearchResults from './components/searchResults';
+import reducer from './reducers';
 
 const store = createStore(reducer);
 

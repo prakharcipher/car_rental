@@ -1,19 +1,47 @@
 import React, {Component} from 'react';
-import {Row, Col, Form, Container} from 'react-bootstrap';
+import {Row, Col, Form, Container, Button} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addSearch } from '../actions';
 import DatePicker from 'react-datepicker';
+import Flex from '../flex.jpg';
 
 import "react-datepicker/dist/react-datepicker.css";
 
-export default class Landing extends Component {
+class Landing extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			startDate: new Date(),
+			location: ''
+		}
+	}
+
+	handleLocation = (ev) => {
+		this.setState({location: ev.target.value});
+	}
+
+	handleStartDate = (date) => {
+		this.setState({startDate: date});
+	}
+
+	handleSearch = () => {
+		fetch('https://api.sheety.co/311576ae-321a-43e3-9a5b-61b3ac373d85')
+		.then(resp => resp.json())
+		.then((data) => {
+			this.props.addSearch(this.state.location, this.state.startDate.toString().substr(0,3),data);
+			this.props.history.push('/search');			
+		})
+	}
+
 	render() {
 		return (
 			<div>
-				<Container>
+				<Container style={{marginTop: '20%', backgroundColor: 'blue'}}>
 					<Row>
 						<Col>
 							<Form.Group>
-								{/*<ControlLabel>Location</ControlLabel>*/}
-								<Form.Control as="select">
+								<Form.Control style={{width: '50%', margin: 'auto'}} as="select" name="location" onChange={this.handleLocation}>
 									<option value="">Select Pick-up Point</option>
 									<option value="Koramangala">Koramangala</option>
 									<option value="HSR Layout">HSR Layout</option>
@@ -22,10 +50,14 @@ export default class Landing extends Component {
 							</Form.Group>
 						</Col>
 						<Col>
-							<Form.Group>
-							{/*	<ControlLabel>Label</ControlLabel>*/}
-								<DatePicker id="example-datepicker" selected={new Date()} />
+							<Form.Group style={{width: '50%', margin: 'auto'}}>
+								<DatePicker id="example-datepicker" name="startDate" onChange={this.handleStartDate} selected={this.state.startDate} />
 							</Form.Group>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<Button style={{width: '100%'}} onClick={this.handleSearch} variant="success"><Link to="/search">Search</Link></Button>
 						</Col>
 					</Row>
 					</Container>
@@ -33,3 +65,7 @@ export default class Landing extends Component {
 			)
 	}
 }
+
+export default connect(null, { addSearch })(
+  Landing
+);
