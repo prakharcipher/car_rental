@@ -10,9 +10,9 @@ class CarFleet extends Component {
 		return (
 				<Row>
 					<CardColumns>
-					  {this.props.cars && this.props.cars[0].carsList.map((car, index) => {
+					  {this.props.cars && this.props.cars.cars.map((car, index) => {
 					  	return (
-					  			<Car key={index} carObj={car} selectedDate={this.props.cars[0].date} />
+					  			<Car key={index} carObj={car} selectedDate={this.props.cars.date} />
 					  		)
 					  })}
 					</CardColumns>

@@ -1,29 +1,49 @@
 import React, { Component } from 'react';
 import {Row, Col, Navbar, Nav, Form, Button} from 'react-bootstrap';
+import {findSearch, sortCars} from '../actions';
+import {connect} from 'react-redux';
 
-export default class Filters extends Component {
+class Filters extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			searchValue: '',
+			sortParam: false
+		}
+	}
+
+	handleClick = () => {
+		this.props.findSearch(this.state.searchValue);
+	}
+
+	handleSort = () => {
+		this.setState({sortParam: !this.state.sortParam}, () => {
+			this.props.sortCars(this.state.sortParam);
+		})
+	}
+
 	render() {
 		return (
 			<div>
 				<Row>
-					<Col>
+					<Col className="hidden-xs">
 						<Navbar bg="light" variant="light">
 					    <Navbar.Brand>Sort By:</Navbar.Brand>
 					    <Nav className="mr-auto">
-					      <Nav.Link href="#home">Price &#8593;</Nav.Link>					      
+					      <Nav.Link onClick={this.handleSort}>Price &#8593;</Nav.Link>					      
 					    </Nav>
 					    <Form inline>
-					      <Form.Control type="text" placeholder="Search Cars" className="mr-sm-2" />
-					      <Button variant="outline-primary">Search</Button>
+					      <Form.Control type="text" placeholder="Search Cars" value={this.state.searchValue} onChange={(ev) => this.setState({searchValue: ev.target.value})} className="mr-sm-2" />
+					      <Button onClick={this.handleClick} variant="outline-primary">Search</Button>
 					    </Form>
 					  </Navbar>
 					</Col>
 				</Row>
 				<Row>
-					<Col style={{textAlign: 'right'}}>
+					<Col className="hidden-xs" style={{textAlign: 'right'}}>
 						Transmission Type:
 					</Col>
-					<Col>
+					<Col className="hidden-xs">
 						<div>
 								<Form.Group controlId="formBasicChecbox">
 							    <Form.Check type="checkbox" label="Manual" />
@@ -33,10 +53,10 @@ export default class Filters extends Component {
 							  </Form.Group>
 						</div>
 					</Col>
-					<Col style={{textAlign: 'right'}}>
+					<Col className="hidden-xs" style={{textAlign: 'right'}}>
 						<strong>Car Type:</strong>
 					</Col>
-					<Col>
+					<Col className="hidden-xs">
 						<div>
 								<Form.Group controlId="formBasicChecbox">
 							    <Form.Check type="checkbox" label="Hatchback" />
@@ -52,10 +72,10 @@ export default class Filters extends Component {
 							  </Form.Group>
 						</div>
 					</Col>
-					<Col style={{textAlign: 'right'}}>
+					<Col className="hidden-xs" style={{textAlign: 'right'}}>
 						Fuel Type:
 					</Col>
-					<Col>
+					<Col className="hidden-xs">
 						<div>
 								<Form.Group controlId="formBasicChecbox">
 							    <Form.Check type="checkbox" label="Petrol" />
@@ -70,3 +90,11 @@ export default class Filters extends Component {
 			)
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+		cars: state
+	};
+}
+
+export default connect(mapStateToProps , {findSearch, sortCars})(Filters)

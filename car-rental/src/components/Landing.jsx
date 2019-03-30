@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Row, Col, Form, Container, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addSearch } from '../actions';
+import { addSearch, initialiseCars } from '../actions';
 import DatePicker from 'react-datepicker';
 import Flex from '../flex.jpg';
 
@@ -17,6 +17,14 @@ class Landing extends Component {
 		}
 	}
 
+	componentDidMount() {
+		fetch('https://api.sheety.co/311576ae-321a-43e3-9a5b-61b3ac373d85')
+		.then(resp => resp.json())
+		.then((data) => {
+			this.props.initialiseCars(data);
+		})
+	}
+
 	handleLocation = (ev) => {
 		this.setState({location: ev.target.value});
 	}
@@ -26,12 +34,8 @@ class Landing extends Component {
 	}
 
 	handleSearch = () => {
-		fetch('https://api.sheety.co/311576ae-321a-43e3-9a5b-61b3ac373d85')
-		.then(resp => resp.json())
-		.then((data) => {
-			this.props.addSearch(this.state.location, this.state.startDate.toString().substr(0,3),data);
+			this.props.addSearch(this.state.location, this.state.startDate.toString().substr(0,3));
 			this.props.history.push('/search');			
-		})
 	}
 
 	render() {
@@ -66,6 +70,12 @@ class Landing extends Component {
 	}
 }
 
-export default connect(null, { addSearch })(
+function mapStateToProps(state) {
+	return {
+		cars: state
+	}
+}
+
+export default connect(mapStateToProps, { addSearch, initialiseCars })(
   Landing
 );
