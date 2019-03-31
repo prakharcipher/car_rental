@@ -1,10 +1,11 @@
-import { ADD_SEARCH, FILTER_SEARCH, FIND_SEARCH, INITIALISE_CARS, SORT_CARS } from '../constants';
+import { ADD_SEARCH, FILTER_SEARCH, FIND_SEARCH, INITIALISE_CARS, SORT_CARS, PAGE_CHANGE } from '../constants';
 
-export const addSearch = (location,date) => {
+export const addSearch = (location,date, initSearch) => {
 	const action = {
 		type: ADD_SEARCH,
 		location,
-		date
+		date,
+		initSearch
 	};
 	return action;
 };
@@ -16,6 +17,12 @@ export const initialiseCars = (cars) => {
 	};
 	return action;
 };
+
+export const pageChange = () => {
+	const action = {
+		type: PAGE_CHANGE
+	}
+}
 
 export const filterSearch = (transmissionType, carType, fuelType) => {
 	const action = {

@@ -1,4 +1,4 @@
-import {ADD_SEARCH, FILTER_SEARCH, FIND_SEARCH, INITIALISE_CARS, SORT_CARS} from '../constants';
+import {ADD_SEARCH, FILTER_SEARCH, FIND_SEARCH, INITIALISE_CARS, SORT_CARS, PAGE_CHANGE} from '../constants';
 
 function searchUtility(carsList, action) {
 	const newCars = carsList.filter((car, index) => {
@@ -8,13 +8,7 @@ function searchUtility(carsList, action) {
 }
 
 function findingUtility(carsList, action) {
-	// const newCars = carsList.filter((car, index) => {
-	// 	const checkableString = car.car_Type + ' ' + car.name;
-	// 	console.log('String === ', checkableString);
-	// 	const re = new RegExp(action.queryString, 'i');
-	// 	return ().match(re) !== null;
-	// });
-
+	console.log("Len === ", arguments.length);
 	const newCars = carsList.filter(
     car => (car.car_Type+' '+car.name).match(new RegExp(action.queryString, 'i')) !== null
   );
@@ -41,6 +35,10 @@ const bookingQuery = (state = {}, action) => {
 	};
 }
 
+const paginate = (state = {}, action) => {
+
+}
+
 const initCars = action => {
 	let {cars} = action;
 	return cars;
@@ -63,11 +61,14 @@ const cars = (state = {}, action) => {
 		case INITIALISE_CARS:
 			cars = {...state, cars: initCars(action)}
 			sessionStorage.setItem('cars', JSON.stringify(cars));
+			sessionStorage.setItem('carsOriginal', JSON.stringify(cars));
 			return cars;
 		case ADD_SEARCH:
-			cars = bookingQuery(state, action)
+			cars = action.initSearch ? bookingQuery(state, action) : bookingQuery(JSON.parse(sessionStorage.getItem('carsOriginal')), action)
 			sessionStorage.setItem('cars', JSON.stringify(cars));
 			return cars;
+		case PAGE_CHANGE:
+			cars = paginate(state, action)
 		case FIND_SEARCH:
 			cars = findingQuery(state, action)
 			return cars;

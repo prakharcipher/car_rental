@@ -34,7 +34,7 @@ class Landing extends Component {
 	}
 
 	handleSearch = () => {
-			this.props.addSearch(this.state.location, this.state.startDate.toString().substr(0,3));
+			this.props.addSearch(this.state.location, this.state.startDate.toString().substr(0,3), true);
 			this.props.history.push('/search');			
 	}
 
