@@ -16,32 +16,78 @@ function findingUtility(carsList, action) {
 }
 
 const findingQuery = (state = {}, action) => {
-	let {queryString} = action;
+	let {queryString, pageSize} = action;
 	const cars = findingUtility(state.cars, action);
 	return {
-		cars: cars,
+		cars: queryString.length === 0 ? JSON.parse(sessionStorage.getItem('sessionCars')).sessionCars : cars,
 		location: state.location,
-		date: state.date
+		date: state.date,
+		carsPerPage: queryString.length === 0 ? JSON.parse(sessionStorage.getItem('sessionCars')).sessionCars.slice(0, action.pageSize) : cars.slice(0, action.pageSize)
 	};
 }
 
 const bookingQuery = (state = {}, action) => {
-	let {location ,date} = action;
+	let {location ,date, pageSize} = action;
 	const cars = searchUtility(state.cars, action);
+	sessionStorage.setItem('sessionCars', JSON.stringify({sessionCars: cars}));
 	return {
 		cars: cars,
+		sessionCars: cars,
 		location: location,
-		date: date
+		date: date,
+		carsPerPage: cars.slice(0, pageSize),
+		setInitialPage: true
 	};
 }
 
 const paginate = (state = {}, action) => {
+	let {pageSize, pageNumber} = action;
+	let logicalPageNumber = --pageNumber
+	const carsPerPage = state.cars.slice(logicalPageNumber*pageSize, (logicalPageNumber+1)*pageSize);
+	return {
+		cars: state.cars,
+		carsPerPage: carsPerPage,
+		location: state.location,
+		date: state.date
+	}
+}
 
+function filterUtility(carsList, filters) {
+	let validCount;
+	console.log("Filters ================= ", filters);
+	const newCars = carsList.filter((car) => {
+		const compareString = car.car_Type + ' ' + car.fuel_Type + ' ' + car.transmission;
+		console.log("Compare ====== ", compareString);
+		validCount = 0;
+		for(var i = 0; i < filters.length; i++) {
+			if(compareString.match(new RegExp(filters[i], 'i')) !== null)
+				validCount++;
+		}
+		console.log("valid count === ", validCount);
+		if(validCount === filters.length)
+			return car;
+	})
+	console.log("New carsssss ====== ", newCars);
+	return newCars;
 }
 
 const initCars = action => {
 	let {cars} = action;
 	return cars;
+}
+
+const filterCars = (state = {}, action) => {
+	let {filtersArray} = action;
+	console.log("Filters input = ", filtersArray);
+	const cars = filterUtility(JSON.parse(sessionStorage.getItem('sessionCars')).sessionCars, filtersArray)
+	console.log("page size = ", action.pageSize);
+	return {
+		cars: filtersArray.length === 0 ? JSON.parse(sessionStorage.getItem('sessionCars')).sessionCars : cars,
+		location: state.location,
+		date: state.date,
+		carsPerPage: filtersArray.length === 0 ? JSON.parse(sessionStorage.getItem('sessionCars')).sessionCars.slice(0, action.pageSize) : cars.slice(0, action.pageSize),
+		setInitialPage: true
+	}
 }
 
 const sortCars = (state = {}, action) => {
@@ -50,7 +96,9 @@ const sortCars = (state = {}, action) => {
 	return {
 		cars: cars,
 		location: state.location,
-		date: state.date
+		date: state.date,
+		carsPerPage: cars.slice(0,action.pageSize),
+		setInitialPage: true
 	};
 }
 
@@ -69,8 +117,14 @@ const cars = (state = {}, action) => {
 			return cars;
 		case PAGE_CHANGE:
 			cars = paginate(state, action)
+			return cars;
+		case FILTER_SEARCH:
+			cars = filterCars(state, action)
+			sessionStorage.setItem('cars', JSON.stringify(cars));
+			return cars;
 		case FIND_SEARCH:
 			cars = findingQuery(state, action)
+			sessionStorage.setItem('cars', JSON.stringify(cars));
 			return cars;
 		case SORT_CARS:
 			cars = sortCars(state, action)

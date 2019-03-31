@@ -13,7 +13,8 @@ class SearchResults extends Component {
 		super(props);
 		this.state = {
 			location: '',
-			date: ''
+			date: '',
+			pageLimit: 6
 		}
 	}
 
@@ -26,7 +27,7 @@ class SearchResults extends Component {
 	}
 
 	handleClick = () => {
-		this.props.addSearch(this.state.location, this.state.date.toString().substr(0,3), false)
+		this.props.addSearch(this.state.location, this.state.date.toString().substr(0,3), false, this.state.pageLimit)
 	}
 
 	render() {
@@ -50,9 +51,9 @@ class SearchResults extends Component {
 							<Form.Group>								
 								<Form.Control onChange={this.handleLocation} as="select" name="location">
 									<option value="">Select Pick-up Point</option>
-									<option value="Koramangala">Koramangala</option>
-									<option value="HSR Layout">HSR Layout</option>
-									<option value="Indiranagar">Indiranagar</option>
+									<option value="Koramangala" selected={this.props.cars.location === 'Koramangala'}>Koramangala</option>
+									<option value="HSR Layout" selected={this.props.cars.location === 'HSR Layout'}>HSR Layout</option>
+									<option value="Indiranagar" selected={this.props.cars.location === 'Indiranagar'}>Indiranagar</option>
 								</Form.Control>
 							</Form.Group>
 						</Col>
@@ -66,7 +67,7 @@ class SearchResults extends Component {
 							<Button onClick={this.handleClick} style={{float: 'right'}} variant="success">Modify Search</Button>
 						</Col>
 					</Row>
-					<Filters />
+					<Filters /><br />
 					<CarFleet />
 					<FleetPagination /><br />
 					</Container>
@@ -75,4 +76,10 @@ class SearchResults extends Component {
 	}
 }
 
-export default connect(null, {addSearch})(SearchResults)
+function mapStateToProps(state) {
+	return {
+		cars: state
+	}
+}
+
+export default connect(mapStateToProps, {addSearch})(SearchResults)

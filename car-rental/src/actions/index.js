@@ -1,11 +1,12 @@
 import { ADD_SEARCH, FILTER_SEARCH, FIND_SEARCH, INITIALISE_CARS, SORT_CARS, PAGE_CHANGE } from '../constants';
 
-export const addSearch = (location,date, initSearch) => {
+export const addSearch = (location,date, initSearch, pageSize) => {
 	const action = {
 		type: ADD_SEARCH,
 		location,
 		date,
-		initSearch
+		initSearch,
+		pageSize
 	};
 	return action;
 };
@@ -18,34 +19,38 @@ export const initialiseCars = (cars) => {
 	return action;
 };
 
-export const pageChange = () => {
+export const pageChange = (pageNumber, pageSize) => {
 	const action = {
-		type: PAGE_CHANGE
-	}
+		type: PAGE_CHANGE,
+		pageNumber,
+		pageSize
+	};
+	return action;
 }
 
-export const filterSearch = (transmissionType, carType, fuelType) => {
+export const filterSearch = (filtersArray, pageSize) => {
 	const action = {
 		type: FILTER_SEARCH,
-		transmissionType,
-		carType,
-		fuelType
+		filtersArray,
+		pageSize
 	};
 	return action;
 };
 
-export const findSearch = (queryString) => {
+export const findSearch = (queryString, pageSize) => {
 	const action = {
 		type: FIND_SEARCH,
-		queryString
+		queryString,
+		pageSize
 	};
 	return action;
 };
 
-export const sortCars = (sortParam) => {
+export const sortCars = (sortParam, pageSize) => {
 	const action = {
 		type: SORT_CARS,
-		sortParam
+		sortParam,
+		pageSize
 	};
 	return action;
 }

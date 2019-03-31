@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Row, Col, Card, Button, Badge} from 'react-bootstrap';
+import {Row, Col, Button, Card, Badge} from 'react-bootstrap';
 
 class Car extends Component {
 	render() {

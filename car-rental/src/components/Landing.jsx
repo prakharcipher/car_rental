@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Row, Col, Form, Container, Button} from 'react-bootstrap';
+import {Row, Col, Form, Button, Container} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addSearch, initialiseCars } from '../actions';
@@ -13,7 +13,8 @@ class Landing extends Component {
 		super(props);
 		this.state = {
 			startDate: new Date(),
-			location: ''
+			location: '',
+			pageSize: 6
 		}
 	}
 
@@ -34,7 +35,7 @@ class Landing extends Component {
 	}
 
 	handleSearch = () => {
-			this.props.addSearch(this.state.location, this.state.startDate.toString().substr(0,3), true);
+			this.props.addSearch(this.state.location, this.state.startDate.toString().substr(0,3), true, this.state.pageSize);
 			this.props.history.push('/search');			
 	}
 

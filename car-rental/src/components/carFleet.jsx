@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {Row, CardColumns, Card, Button} from 'react-bootstrap';
+import {Row, Card, Button, CardColumns} from 'react-bootstrap';
 import Car from './car';
 
 
@@ -10,7 +10,7 @@ class CarFleet extends Component {
 		return (
 				<Row>
 					<CardColumns>
-					  {this.props.cars && this.props.cars.cars.map((car, index) => {
+					  {this.props.cars && this.props.cars.carsPerPage && this.props.cars.carsPerPage.map((car, index) => {
 					  	return (
 					  			<Car key={index} carObj={car} selectedDate={this.props.cars.date} />
 					  		)
