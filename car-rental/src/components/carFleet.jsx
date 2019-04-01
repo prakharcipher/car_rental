@@ -5,14 +5,24 @@ import Car from './car';
 
 
 class CarFleet extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			selectedCar: ''
+		}
+	}
+
+	handleSelection = (name) => {
+		this.setState({selectedCar: name});
+	}
+
 	render() {
-		console.log("This props ==== ", this.props.cars);
 		return (
 				<Row>
 					<CardColumns>
 					  {this.props.cars && this.props.cars.carsPerPage && this.props.cars.carsPerPage.map((car, index) => {
 					  	return (
-					  			<Car key={index} carObj={car} selectedDate={this.props.cars.date} />
+					  			<Car key={index} carObj={car} selectedDate={this.props.cars.date} onSelectCar={this.handleSelection} selectedCar={this.state.selectedCar} />
 					  		)
 					  })}
 					</CardColumns>

@@ -45,7 +45,7 @@ class Filters extends Component {
 						<Navbar bg="light" variant="light">
 					    <Navbar.Brand>Sort By:</Navbar.Brand>
 					    <Nav className="mr-auto">
-					      <Nav.Link onClick={this.handleSort}>Price &#8593;</Nav.Link>					      
+						    {!this.state.sortParam ? <Nav.Link onClick={this.handleSort}>Price &#8593;</Nav.Link> : <Nav.Link onClick={this.handleSort}>Price &#x2193;</Nav.Link>}
 					    </Nav>
 					    <Form inline>
 					      <Form.Control type="text" placeholder="Search Cars" value={this.state.searchValue} onChange={(ev) => this.setState({searchValue: ev.target.value})} className="mr-sm-2" />

@@ -57,6 +57,7 @@ class FleetPagination extends Component {
 		return (
 				<Row>
 					<Col>
+					<div style={{width: '200px', margin: 'auto'}}>
 						<ReactPaginate
 	            previousLabel={"Prev"}
 	            nextLabel={"Next"}
@@ -73,6 +74,7 @@ class FleetPagination extends Component {
 	            onPageChange={(data) => this.handleSelectPagination(data.selected + 1)}
 	            disableInitialCallback={true}
 	          />
+	          </div>
 					</Col>
 				</Row>
 			)

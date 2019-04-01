@@ -48,7 +48,7 @@ class SearchResults extends Component {
 			  </Navbar>
 					<Row>
 						<Col>
-							<Form.Group>								
+							<Form.Group>							
 								<Form.Control onChange={this.handleLocation} as="select" name="location">
 									<option value="">Select Pick-up Point</option>
 									<option value="Koramangala" selected={this.props.cars.location === 'Koramangala'}>Koramangala</option>
@@ -59,8 +59,8 @@ class SearchResults extends Component {
 						</Col>
 						<Col>
 							<Form.Group>
-								<label>Pick-up Date</label>							
-								<DatePicker onChange={this.handleDate} id="example-datepicker" name="startDate" selected={new Date()} />
+								<label style={{marginRight: '5px'}}>Pick-up Date</label>							
+								<DatePicker onChange={this.handleDate} id="example-datepicker" minDate={new Date()} name="startDate" selected={new Date()} />
 							</Form.Group>
 						</Col>
 						<Col>
