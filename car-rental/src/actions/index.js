@@ -28,10 +28,10 @@ export const pageChange = (pageNumber, pageSize) => {
 	return action;
 }
 
-export const filterSearch = (filtersArray, pageSize) => {
+export const filterSearch = (filtersObject, pageSize) => {
 	const action = {
 		type: FILTER_SEARCH,
-		filtersArray,
+		filtersObject,
 		pageSize
 	};
 	return action;

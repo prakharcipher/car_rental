@@ -32,7 +32,7 @@ class SearchResults extends Component {
 
 	render() {
 		return (
-				<div>
+				<div style={{backgroundColor: '#f9f9eb'}}>
 				<Container>
 				<Navbar bg="light">
 			    <Navbar.Brand>

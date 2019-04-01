@@ -10,7 +10,7 @@ class Filters extends Component {
 			searchValue: '',
 			sortParam: false,
 			pageSize: 6,
-			filtersArray: []
+			filtersObject: {transmissionType: [], carType: [], fuelType: [], filterCount: 0}
 		}
 	}
 
@@ -24,16 +24,35 @@ class Filters extends Component {
 		})
 	}
 
-	handleChange = (ev) => {
-		let filtersArrayCopy = [];
-		if(ev.target.checked) {			
-			filtersArrayCopy = [...this.state.filtersArray, ev.target.value]
+	// handleChange = (ev) => {
+	// 	let filtersArrayCopy = [];
+	// 	if(ev.target.checked) {			
+	// 		filtersArrayCopy = [...this.state.filtersArray, ev.target.value]
+	// 	} else {
+	// 		const filtersArrayClone = [...this.state.filtersArray];
+	// 		filtersArrayCopy = filtersArrayClone.filter(elem => elem !== ev.target.value);
+	// 	}
+	// 	this.setState({filtersArray: filtersArrayCopy}, () => {
+	// 		this.props.filterSearch(this.state.filtersArray, this.state.pageSize);
+	// 	})
+	// }
+
+	handleChange = (ev, filterType) => {
+		let filterTypeArrayCopy = [];
+		let filterCount = 0;
+		if(ev.target.checked) {
+			filterCount++;
+			filterTypeArrayCopy = [...this.state.filtersObject[filterType], ev.target.value]
 		} else {
-			const filtersArrayClone = [...this.state.filtersArray];
-			filtersArrayCopy = filtersArrayClone.filter(elem => elem !== ev.target.value);
+			filterCount--;
+			const filtersArrayClone = [...this.state.filtersObject[filterType]];
+			filterTypeArrayCopy = filtersArrayClone.filter(elem => elem !== ev.target.value);
 		}
-		this.setState({filtersArray: filtersArrayCopy}, () => {
-			this.props.filterSearch(this.state.filtersArray, this.state.pageSize);
+		let filtersObjectCopy = {...this.state.filtersObject};
+		filtersObjectCopy[filterType] = filterTypeArrayCopy;
+		filtersObjectCopy.filterCount = filterCount;
+		this.setState({filtersObject: filtersObjectCopy}, () => {
+			this.props.filterSearch(this.state.filtersObject, this.state.pageSize);
 		})
 	}
 
@@ -63,7 +82,7 @@ class Filters extends Component {
 					</Col>
 					<Col xs={1} className="hidden-xs">
 						<div>
-								<Form.Group onChange={this.handleChange} name="transmission" controlId="formBasicChecbox">
+								<Form.Group onChange={(ev) => this.handleChange(ev,'transmissionType')} name="transmission" controlId="formBasicChecbox">
 							    <Form.Check value="Manual" type="checkbox" inline label="Manual" />
 							    <Form.Check value="Automatic" type="checkbox" inline label="Automatic" />
 							  </Form.Group>
@@ -74,7 +93,7 @@ class Filters extends Component {
 					</Col>
 					<Col xs={1} className="hidden-xs">
 						<div>
-								<Form.Group onChange={this.handleChange} controlId="formBasicChecbox" style={{marginRight: '-20px'}} >
+								<Form.Group onChange={(ev) => this.handleChange(ev,'carType')} controlId="formBasicChecbox" style={{marginRight: '-20px'}} >
 							    <Form.Check value="Hatchback" type="checkbox" inline label="Hatchback" />
 							    <Form.Check value="Sedan" type="checkbox" inline label="Sedan" />
 							    <Form.Check value="SUV" type="checkbox" inline label="SUV" />
@@ -87,7 +106,7 @@ class Filters extends Component {
 					</Col>
 					<Col xs={1} className="hidden-xs">
 						<div>
-								<Form.Group onChange={this.handleChange} controlId="formBasicChecbox">
+								<Form.Group onChange={(ev) => this.handleChange(ev,'fuelType')} controlId="formBasicChecbox">
 							    <Form.Check value="Petrol" type="checkbox" inline label="Petrol" />
 							    <Form.Check value="Diesel" type="checkbox" inline label="Diesel" />
 							  </Form.Group>

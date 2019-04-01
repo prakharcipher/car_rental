@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {Row, Card, Button, CardColumns} from 'react-bootstrap';
+import {Row, Card, Button, CardRows} from 'react-bootstrap';
 import Car from './car';
 
 
@@ -19,13 +19,13 @@ class CarFleet extends Component {
 	render() {
 		return (
 				<Row>
-					<CardColumns>
+					<CardRows>
 					  {this.props.cars && this.props.cars.carsPerPage && this.props.cars.carsPerPage.map((car, index) => {
 					  	return (
 					  			<Car key={index} carObj={car} selectedDate={this.props.cars.date} onSelectCar={this.handleSelection} selectedCar={this.state.selectedCar} />
 					  		)
 					  })}
-					</CardColumns>
+					</CardRows>
 				</Row>
 			)
 	}

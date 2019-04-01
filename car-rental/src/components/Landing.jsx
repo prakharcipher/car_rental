@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Row, Col, Form, Button, Container} from 'react-bootstrap';
+import Background from './flex.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addSearch, initialiseCars } from '../actions';
 import DatePicker from 'react-datepicker';
-import Flex from '../flex.jpg';
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -41,28 +41,36 @@ class Landing extends Component {
 
 	render() {
 		return (
-			<div>
-				<Container style={{marginTop: '20%', backgroundColor: 'blue'}}>
+			<div style={{backgroundImage: `url(${Background})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: '900px'}}>
+				<Container style={{position: 'absolute', top: '20%', left: '10%', backgroundColor: '#e6f3ff', padding: '20px', border: '1px solid #bfbfbf', boxShadow: '2px 2px 8px gray', opacity: '0.9'}}>
 					<Row>
-						<Col>
+						<Col style={{textAlign: 'center'}}>
+						<label>Location</label>
+						<div>
 							<Form.Group>
-								<Form.Control style={{width: '50%', margin: 'auto'}} as="select" name="location" onChange={this.handleLocation}>
+								<Form.Control style={{width: '30%', margin: 'auto', height: '25px'}} as="select" name="location" onChange={this.handleLocation}>
 									<option value="">Select Pick-up Point</option>
 									<option value="Koramangala">Koramangala</option>
 									<option value="HSR Layout">HSR Layout</option>
 									<option value="Indiranagar">Indiranagar</option>
 								</Form.Control>
 							</Form.Group>
+							</div>
 						</Col>
-						<Col>
+						<Col style={{textAlign: 'center'}}>
+						<label>Pick-up Date</label>
+						<div>
 							<Form.Group style={{width: '50%', margin: 'auto'}}>
 								<DatePicker id="example-datepicker" name="startDate" minDate={new Date()} onChange={this.handleStartDate} selected={this.state.startDate} />
 							</Form.Group>
+							</div>
 						</Col>
 					</Row>
 					<Row>
 						<Col>
-							<Button style={{width: '100%'}} onClick={this.handleSearch} variant="success"><Link to="/search">Search</Link></Button>
+							<div style={{width: '200px', margin: 'auto'}}>
+								<Button style={{width: '100%'}} onClick={this.handleSearch} variant="success"><Link style={{color: 'white'}} to="/search">Search</Link></Button>
+							</div>
 						</Col>
 					</Row>
 					</Container>

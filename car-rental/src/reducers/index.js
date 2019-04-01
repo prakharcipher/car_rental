@@ -52,19 +52,62 @@ const paginate = (state = {}, action) => {
 	}
 }
 
-function filterUtility(carsList, filters) {
+// function filterUtility(carsList, filters) {
+// 	let validCount;
+// 	console.log("crs list ================= ", carsList);
+// 	const newCars = carsList.filter((car) => {
+// 		const compareString = car.car_Type + ' ' + car.fuel_Type + ' ' + car.transmission;
+// 		console.log("Compare ====== ", compareString);
+// 		validCount = 0;
+// 		for(var i = 0; i < filters.length; i++) {
+// 			if(compareString.match(new RegExp(filters[i], 'i')) !== null)
+// 				validCount++;
+// 		}
+// 		console.log("valid count === ", validCount);
+// 		if(validCount === filters.length)
+// 			return car;
+// 	})
+// 	console.log("New carsssss ====== ", newCars);
+// 	return newCars;
+// }
+
+function filterUtility(carList, filters) {
 	let validCount;
-	console.log("Filters ================= ", filters);
-	const newCars = carsList.filter((car) => {
-		const compareString = car.car_Type + ' ' + car.fuel_Type + ' ' + car.transmission;
-		console.log("Compare ====== ", compareString);
+
+	const newCars = carList.filter((car) => {
+		
+		// const compareString = car.car_Type + ' ' + car.fuel_Type + ' ' + car.transmission;
+		
+		
+
 		validCount = 0;
-		for(var i = 0; i < filters.length; i++) {
-			if(compareString.match(new RegExp(filters[i], 'i')) !== null)
-				validCount++;
+		let carFlag = 0;
+		let transmissionFlag = 0;
+		let fuelFlag = 0;
+		
+
+		if(filters.carType.length === 0) carFlag = true;
+		for(var i = 0; i < filters.carType.length; i++) {
+			if(car.car_Type.match(new RegExp(filters.carType[i], 'i')) !== null)
+				carFlag = true;
 		}
+		
+		if(filters.transmissionType.length === 0) transmissionFlag = true;
+
+		for(var i = 0; i < filters.transmissionType.length; i++) {
+			if(car.transmission.match(new RegExp(filters.transmissionType[i], 'i')) !== null)
+				transmissionFlag = true;
+		}
+
+		if(filters.fuelType.length === 0) fuelFlag = true;
+		for(var i = 0; i < filters.fuelType.length; i++) {
+			if(car.fuel_Type.match(new RegExp(filters.fuelType[i], 'i')) !== null)
+				fuelFlag = true;
+		}
+		
 		console.log("valid count === ", validCount);
-		if(validCount === filters.length)
+		
+		if(carFlag && transmissionFlag && fuelFlag)
 			return car;
 	})
 	console.log("New carsssss ====== ", newCars);
@@ -77,15 +120,14 @@ const initCars = action => {
 }
 
 const filterCars = (state = {}, action) => {
-	let {filtersArray} = action;
-	console.log("Filters input = ", filtersArray);
-	const cars = filterUtility(JSON.parse(sessionStorage.getItem('sessionCars')).sessionCars, filtersArray)
+	let {filtersObject} = action;
+	const cars = filterUtility(JSON.parse(sessionStorage.getItem('sessionCars')).sessionCars, filtersObject)
 	console.log("page size = ", action.pageSize);
 	return {
-		cars: filtersArray.length === 0 ? JSON.parse(sessionStorage.getItem('sessionCars')).sessionCars : cars,
+		cars: filtersObject.filterCount === 0 ? JSON.parse(sessionStorage.getItem('sessionCars')).sessionCars : cars,
 		location: state.location,
 		date: state.date,
-		carsPerPage: filtersArray.length === 0 ? JSON.parse(sessionStorage.getItem('sessionCars')).sessionCars.slice(0, action.pageSize) : cars.slice(0, action.pageSize),
+		carsPerPage: filtersObject.filterCount === 0 ? JSON.parse(sessionStorage.getItem('sessionCars')).sessionCars.slice(0, action.pageSize) : cars.slice(0, action.pageSize),
 		setInitialPage: true
 	}
 }
