@@ -38,56 +38,49 @@ The page will reload if you make edits.<br>
 
 ### Search Results Page:
 
+![Screenshot](results.png)
+
 1) Update Search criteria - 
 
 		On the current results page, update the pickup criteria to get the new results fulfilling the criteria.
 
-2) 
+2) Sort Cars - 
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+		Sort resulted cars by Price on the click of a button
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+3) Search Cars - 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+		Search car/s by name or Car Type
 
-### `npm run eject`
+4) Filter Cars - 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+		Filter the list of cars on the basis of Car Type, Fuel Type and Transmission Type. The Filters are exhaustive and any combination of filters can be implemented to get a more refined search of cars as per the need.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Car Card:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+		Each result is displayed as a card with all the information including, the car image, car name, seating capacity, car type, fuel type, price and availability.
+		A `not available` badge is displayed if the car is unavailable on the selected day of pickup.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Car Select: 
 
-## Learn More
+		As a user selects a particular car, the UI changes to reflect the selected car with a blue border on the card. Only one car can be selected at a time.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Pagination:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+		All the results from the pickup criteria, searched query and filtered cars are paginated with 6 results being the page size.
+		Dynamic mounting of page count and results display on the basis of user interaction.
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Resources - 
 
-### Analyzing the Bundle Size
+1) create-react-app : The whole project is setup using create-react-app https://github.com/facebook/create-react-app
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+2) React-Bootstrap : The layout and structuring is done using react-bootstrap https://react-bootstrap.github.io/
 
-### Making a Progressive Web App
+3) React-datepicker : Date picking input field is implemented using react-datepicker https://www.npmjs.com/package/react-datepicker
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+4) React-Paginate : The pagination structure is integrated using React-Paginate https://www.npmjs.com/package/react-paginate
 
-### Advanced Configuration
+5) React Router Dom : Routing mechanism is handled by react-router-dom https://www.npmjs.com/package/react-router-dom
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+6) Redux and react-redux: The two have been used for the universal state management of the application https://react-redux.js.org/
