@@ -53,7 +53,6 @@ class FleetPagination extends Component {
 	}
 
 	render() {
-		console.log("Active == ", this.state.activePage);
 		return (
 				<Row>
 					<Col>

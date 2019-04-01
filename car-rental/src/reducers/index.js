@@ -8,7 +8,6 @@ function searchUtility(carsList, action) {
 }
 
 function findingUtility(carsList, action) {
-	console.log("Len === ", arguments.length);
 	const newCars = carsList.filter(
     car => (car.car_Type+' '+car.name).match(new RegExp(action.queryString, 'i')) !== null
   );
@@ -52,24 +51,6 @@ const paginate = (state = {}, action) => {
 	}
 }
 
-// function filterUtility(carsList, filters) {
-// 	let validCount;
-// 	console.log("crs list ================= ", carsList);
-// 	const newCars = carsList.filter((car) => {
-// 		const compareString = car.car_Type + ' ' + car.fuel_Type + ' ' + car.transmission;
-// 		console.log("Compare ====== ", compareString);
-// 		validCount = 0;
-// 		for(var i = 0; i < filters.length; i++) {
-// 			if(compareString.match(new RegExp(filters[i], 'i')) !== null)
-// 				validCount++;
-// 		}
-// 		console.log("valid count === ", validCount);
-// 		if(validCount === filters.length)
-// 			return car;
-// 	})
-// 	console.log("New carsssss ====== ", newCars);
-// 	return newCars;
-// }
 
 const resetfunction = (state = {}) => {
 	return {
@@ -83,10 +64,6 @@ function filterUtility(carList, filters) {
 
 	const newCars = carList.filter((car) => {
 		
-		// const compareString = car.car_Type + ' ' + car.fuel_Type + ' ' + car.transmission;
-		
-		
-
 		validCount = 0;
 		let carFlag = 0;
 		let transmissionFlag = 0;
@@ -111,13 +88,10 @@ function filterUtility(carList, filters) {
 			if(car.fuel_Type.match(new RegExp(filters.fuelType[i], 'i')) !== null)
 				fuelFlag = true;
 		}
-		
-		console.log("valid count === ", validCount);
-		
+				
 		if(carFlag && transmissionFlag && fuelFlag)
 			return car;
 	})
-	console.log("New carsssss ====== ", newCars);
 	return newCars;
 }
 
@@ -129,7 +103,6 @@ const initCars = action => {
 const filterCars = (state = {}, action) => {
 	let {filtersObject} = action;
 	const cars = filterUtility(JSON.parse(sessionStorage.getItem('sessionCars')).sessionCars, filtersObject)
-	console.log("page size = ", action.pageSize);
 	return {
 		cars: filtersObject.filterCount === 0 ? JSON.parse(sessionStorage.getItem('sessionCars')).sessionCars : cars,
 		location: state.location,
