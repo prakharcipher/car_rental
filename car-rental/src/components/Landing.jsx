@@ -4,6 +4,7 @@ import Background from '../assets/flex.png';
 import { connect } from 'react-redux';
 import { addSearch, initialiseCars, resetState } from '../actions';
 import DatePicker from 'react-datepicker';
+import '../assets/style.css';
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -48,8 +49,8 @@ class Landing extends Component {
 
 	render() {
 		return (
-			<div style={{backgroundImage: `url(${Background})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: '820px'}}>
-				<Container style={{position: 'absolute', top: '20%', left: '10%', backgroundColor: '#e6f3ff', padding: '20px', border: '1px solid #bfbfbf', boxShadow: '2px 2px 8px gray', opacity: '0.9'}}>
+			<div style={{backgroundImage: `url(${Background})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: '820px', width: '100%'}}>
+				<Container className="mobileOnly" style={{position: 'absolute', top: '20%', left: '10%', backgroundColor: '#e6f3ff', padding: '20px', border: '1px solid #bfbfbf', boxShadow: '2px 2px 8px gray', opacity: '0.9'}}>
 					<Row>
 						<Col style={{textAlign: 'center'}}>
 						<label>Location</label>

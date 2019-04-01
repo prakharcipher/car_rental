@@ -70,6 +70,12 @@
 			    border-radius: .25rem;
 
 			}
+
+			.mobileOnly {
+				position: absolute;
+				top: 20%;
+				left: 0% !important;
+			}
     }
     @media only screen and (device-width: 768px) {
        /* default iPad screens */

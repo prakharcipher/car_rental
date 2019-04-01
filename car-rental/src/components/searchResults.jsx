@@ -5,7 +5,7 @@ import DatePicker from 'react-datepicker';
 import Filters from './Filters';
 import FleetPagination from './fleetPagination';
 import CarFleet from './carFleet';
-import Logo from '../images.png';
+import Logo from '../assets/images.png';
 import {addSearch} from '../actions';
 
 class SearchResults extends Component {
