@@ -16,7 +16,7 @@ function findingUtility(carsList, action) {
 }
 
 const findingQuery = (state = {}, action) => {
-	let {queryString, pageSize} = action;
+	let {queryString} = action;
 	const cars = findingUtility(state.cars, action);
 	return {
 		cars: queryString.length === 0 ? JSON.parse(sessionStorage.getItem('sessionCars')).sessionCars : cars,
@@ -94,20 +94,20 @@ function filterUtility(carList, filters) {
 		
 
 		if(filters.carType.length === 0) carFlag = true;
-		for(var i = 0; i < filters.carType.length; i++) {
+		for(let i = 0; i < filters.carType.length; i++) {
 			if(car.car_Type.match(new RegExp(filters.carType[i], 'i')) !== null)
 				carFlag = true;
 		}
 		
 		if(filters.transmissionType.length === 0) transmissionFlag = true;
 
-		for(var i = 0; i < filters.transmissionType.length; i++) {
+		for(let i = 0; i < filters.transmissionType.length; i++) {
 			if(car.transmission.match(new RegExp(filters.transmissionType[i], 'i')) !== null)
 				transmissionFlag = true;
 		}
 
 		if(filters.fuelType.length === 0) fuelFlag = true;
-		for(var i = 0; i < filters.fuelType.length; i++) {
+		for(let i = 0; i < filters.fuelType.length; i++) {
 			if(car.fuel_Type.match(new RegExp(filters.fuelType[i], 'i')) !== null)
 				fuelFlag = true;
 		}

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {Row, Card, Button, CardDeck} from 'react-bootstrap';
+import {Row, CardDeck} from 'react-bootstrap';
 import Car from './car';
-import './style.css';
+import '../assets/style.css';
 
 
 class CarFleet extends Component {

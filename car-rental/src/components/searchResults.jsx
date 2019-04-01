@@ -55,18 +55,18 @@ class SearchResults extends Component {
 					<Row>
 						<Col>
 							<Form.Group>							
-								<Form.Control onChange={this.handleLocation} as="select" name="location">
+								<Form.Control onChange={this.handleLocation} defaultValue={this.props.cars.location} as="select" name="location">
 									<option value="">Select Pick-up Point</option>
-									<option value="Koramangala" selected={this.props.cars.location === 'Koramangala'}>Koramangala</option>
-									<option value="HSR Layout" selected={this.props.cars.location === 'HSR Layout'}>HSR Layout</option>
-									<option value="Indiranagar" selected={this.props.cars.location === 'Indiranagar'}>Indiranagar</option>
+									<option value="Koramangala">Koramangala</option>
+									<option value="HSR Layout">HSR Layout</option>
+									<option value="Indiranagar">Indiranagar</option>
 								</Form.Control>
 							</Form.Group>
 						</Col>
 						<Col>
 							<Form.Group>
 								<label style={{marginRight: '5px'}}>Pick-up Date</label>							
-								<DatePicker onChange={this.handleDate} id="example-datepicker" minDate={new Date()} name="startDate" selected={new Date()} />
+								<DatePicker onChange={this.handleDate} id="example-datepicker" selected={new Date()} minDate={new Date()} name="startDate" />
 							</Form.Group>
 						</Col>
 						<Col>

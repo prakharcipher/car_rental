@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Row, Col, Form, Button, Container} from 'react-bootstrap';
-import Background from './flex.png';
-import { Link } from 'react-router-dom';
+import Background from '../assets/flex.png';
 import { connect } from 'react-redux';
 import { addSearch, initialiseCars, resetState } from '../actions';
 import DatePicker from 'react-datepicker';
@@ -49,7 +48,7 @@ class Landing extends Component {
 
 	render() {
 		return (
-			<div style={{backgroundImage: `url(${Background})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: '900px'}}>
+			<div style={{backgroundImage: `url(${Background})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: '820px'}}>
 				<Container style={{position: 'absolute', top: '20%', left: '10%', backgroundColor: '#e6f3ff', padding: '20px', border: '1px solid #bfbfbf', boxShadow: '2px 2px 8px gray', opacity: '0.9'}}>
 					<Row>
 						<Col style={{textAlign: 'center'}}>
@@ -69,7 +68,7 @@ class Landing extends Component {
 						<label>Pick-up Date</label>
 						<div>
 							<Form.Group style={{width: '50%', margin: 'auto'}}>
-								<DatePicker id="example-datepicker" name="startDate" minDate={new Date()} onChange={this.handleStartDate} selected={this.state.startDate} />
+								<DatePicker id="example-datepicker" name="startDate" minDate={new Date()} onChange={this.handleStartDate} />
 							</Form.Group>
 							</div>
 						</Col>
@@ -77,7 +76,7 @@ class Landing extends Component {
 					<Row>
 						<Col>
 							<div style={{width: '200px', margin: 'auto'}}>
-								<Button style={{width: '100%'}} onClick={this.handleSearch} variant="success"><Link style={{color: 'white'}}>Search</Link></Button>
+								<Button style={{width: '100%'}} onClick={this.handleSearch} variant="success">Search</Button>
 								{this.state.showError ? <span style={{color: 'red'}}>Please select location and date</span> : null}
 							</div>
 						</Col>
