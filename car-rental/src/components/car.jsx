@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Row, Col, Button, Card, Badge} from 'react-bootstrap';
+import './style.css'; 
+
 
 class Car extends Component {
 
@@ -10,7 +12,7 @@ class Car extends Component {
 	render() {
 		const {carObj, selectedCar} = this.props;
 		return (
-				<Card border={selectedCar === carObj.name ? "primary" : ""} onClick={this.selectCar}>
+				<Card bsPrefix="cardNew" border={selectedCar === carObj.name ? "primary" : ""} onClick={this.selectCar}>
 				{carObj.availability.indexOf(this.props.selectedDate) == -1 ? <Badge style={{position: 'absolute', left: '0%'}} variant="danger">Not Available</Badge> : null}
 			    <Card.Img variant="top" src={carObj.photo} />
 			    <Card.Body>

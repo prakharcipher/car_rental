@@ -1,0 +1,189 @@
+/*@media (max-width: 576px) {
+	.cardNew {
+	    margin: 5px 10px 5px 10px;
+	    width: 100%;
+	    position: relative;
+	    display: -ms-flexbox;
+	    display: flex;
+	    -ms-flex-direction: column;
+	    flex-direction: column;
+	    min-width: 0;
+	    word-wrap: break-word;
+	    background-color: #fff;
+	    background-clip: border-box;
+	    border: 1px solid rgba(0,0,0,.125);
+	    border-radius: .25rem;
+
+	}
+}
+
+@media (max-width: 979px) {
+	.cardNew {
+	    margin: 10px 15px 10px 15px;
+	    width: 50%;
+	    position: relative;
+	    display: -ms-flexbox;
+	    display: flex;
+	    -ms-flex-direction: column;
+	    flex-direction: column;
+	    min-width: 0;
+	    word-wrap: break-word;
+	    background-color: #fff;
+	    background-clip: border-box;
+	    border: 1px solid rgba(0,0,0,.125);
+	    border-radius: .25rem;
+	}
+}
+
+
+
+@media (min-width: 979px) {
+	.cardNew {
+	    margin: 10px 15px 10px 15px;
+	    width: 30%;
+	    position: relative;
+	    display: -ms-flexbox;
+	    display: flex;
+	    -ms-flex-direction: column;
+	    flex-direction: column;
+	    min-width: 0;
+	    word-wrap: break-word;
+	    background-color: #fff;
+	    background-clip: border-box;
+	    border: 1px solid rgba(0,0,0,.125);
+	    border-radius: .25rem;
+	}
+}*/
+
+
+ @media only screen and (min-width: 960px) {
+        /* styles for browsers larger than 960px; */
+        .cardNew {
+			    margin: 10px 15px 10px 15px;
+			    width: 30%;
+			    position: relative;
+			    display: -ms-flexbox;
+			    display: flex;
+			    -ms-flex-direction: column;
+			    flex-direction: column;
+			    min-width: 0;
+			    word-wrap: break-word;
+			    background-color: #fff;
+			    background-clip: border-box;
+			    border: 1px solid rgba(0,0,0,.125);
+			    border-radius: .25rem;
+			}
+    }
+    @media only screen and (min-width: 1440px) {
+        /* styles for browsers larger than 1440px; */
+        .cardNew {
+			    margin: 10px 15px 10px 15px;
+			    width: 30%;
+			    position: relative;
+			    display: -ms-flexbox;
+			    display: flex;
+			    -ms-flex-direction: column;
+			    flex-direction: column;
+			    min-width: 0;
+			    word-wrap: break-word;
+			    background-color: #fff;
+			    background-clip: border-box;
+			    border: 1px solid rgba(0,0,0,.125);
+			    border-radius: .25rem;
+			}
+    }
+    @media only screen and (min-width: 2000px) {
+        /* for sumo sized (mac) screens */
+        .cardNew {
+			    margin: 10px 15px 10px 15px;
+			    width: 30%;
+			    position: relative;
+			    display: -ms-flexbox;
+			    display: flex;
+			    -ms-flex-direction: column;
+			    flex-direction: column;
+			    min-width: 0;
+			    word-wrap: break-word;
+			    background-color: #fff;
+			    background-clip: border-box;
+			    border: 1px solid rgba(0,0,0,.125);
+			    border-radius: .25rem;
+			}
+    }
+    @media only screen and (max-device-width: 480px) {
+       /* styles for mobile browsers smaller than 480px; (iPhone) */
+       .cardNew {
+			    margin: 5px 10px 5px 10px;
+			    width: 100%;
+			    position: relative;
+			    display: -ms-flexbox;
+			    display: flex;
+			    -ms-flex-direction: column;
+			    flex-direction: column;
+			    min-width: 0;
+			    word-wrap: break-word;
+			    background-color: #fff;
+			    background-clip: border-box;
+			    border: 1px solid rgba(0,0,0,.125);
+			    border-radius: .25rem;
+
+			}
+    }
+    @media only screen and (device-width: 768px) {
+       /* default iPad screens */
+       .cardNew {
+			    margin: 5px 10px 5px 10px;
+			    width: 100%;
+			    position: relative;
+			    display: -ms-flexbox;
+			    display: flex;
+			    -ms-flex-direction: column;
+			    flex-direction: column;
+			    min-width: 0;
+			    word-wrap: break-word;
+			    background-color: #fff;
+			    background-clip: border-box;
+			    border: 1px solid rgba(0,0,0,.125);
+			    border-radius: .25rem;
+
+				}
+    }
+    /* different techniques for iPad screening */
+    @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+      /* For portrait layouts only */
+      .cardNew {
+			    margin: 10px 15px 10px 15px;
+			    width: 45%;
+			    position: relative;
+			    display: -ms-flexbox;
+			    display: flex;
+			    -ms-flex-direction: column;
+			    flex-direction: column;
+			    min-width: 0;
+			    word-wrap: break-word;
+			    background-color: #fff;
+			    background-clip: border-box;
+			    border: 1px solid rgba(0,0,0,.125);
+			    border-radius: .25rem;
+			}
+    }
+
+    @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+      /* For landscape layouts only */
+	      .cardNew {
+			    margin: 10px 15px 10px 15px;
+			    width: 30%;
+			    position: relative;
+			    display: -ms-flexbox;
+			    display: flex;
+			    -ms-flex-direction: column;
+			    flex-direction: column;
+			    min-width: 0;
+			    word-wrap: break-word;
+			    background-color: #fff;
+			    background-clip: border-box;
+			    border: 1px solid rgba(0,0,0,.125);
+			    border-radius: .25rem;
+			}
+   }
+

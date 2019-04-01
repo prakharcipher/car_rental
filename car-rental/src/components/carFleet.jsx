@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {Row, Card, Button, CardRows} from 'react-bootstrap';
+import {Row, Card, Button, CardDeck} from 'react-bootstrap';
 import Car from './car';
+import './style.css';
 
 
 class CarFleet extends Component {
@@ -19,13 +20,13 @@ class CarFleet extends Component {
 	render() {
 		return (
 				<Row>
-					<CardRows>
+					<CardDeck  style={{display: 'flex', flexDirection: 'row', width: '100%', flexWrap: 'wrap'}}>
 					  {this.props.cars && this.props.cars.carsPerPage && this.props.cars.carsPerPage.map((car, index) => {
 					  	return (
-					  			<Car key={index} carObj={car} selectedDate={this.props.cars.date} onSelectCar={this.handleSelection} selectedCar={this.state.selectedCar} />
+					  			<Car  key={index} carObj={car} selectedDate={this.props.cars.date} onSelectCar={this.handleSelection} selectedCar={this.state.selectedCar} />
 					  		)
 					  })}
-					</CardRows>
+					</CardDeck>
 				</Row>
 			)
 	}
