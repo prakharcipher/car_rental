@@ -30,6 +30,12 @@ class SearchResults extends Component {
 		this.props.addSearch(this.state.location, this.state.date.toString().substr(0,3), false, this.state.pageLimit)
 	}
 
+	componentWillMount() {
+		console.log("Store ==== ", this.props.cars);
+		if(this.props.cars.location === '' || this.props.cars.date === '')
+			this.props.history.push('/');
+	}
+
 	render() {
 		return (
 				<div style={{backgroundColor: '#f9f9eb'}}>

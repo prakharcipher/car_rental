@@ -3,7 +3,7 @@ import {Row, Col, Form, Button, Container} from 'react-bootstrap';
 import Background from './flex.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addSearch, initialiseCars } from '../actions';
+import { addSearch, initialiseCars, resetState } from '../actions';
 import DatePicker from 'react-datepicker';
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,9 +12,10 @@ class Landing extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			startDate: new Date(),
+			startDate: '',
 			location: '',
-			pageSize: 6
+			pageSize: 6,
+			showError: false
 		}
 	}
 
@@ -24,6 +25,8 @@ class Landing extends Component {
 		.then((data) => {
 			this.props.initialiseCars(data);
 		})
+
+		this.props.resetState();
 	}
 
 	handleLocation = (ev) => {
@@ -35,8 +38,13 @@ class Landing extends Component {
 	}
 
 	handleSearch = () => {
+		if(this.state.location !== '' && this.state.date !== '') {
+			this.setState({showError: false})
 			this.props.addSearch(this.state.location, this.state.startDate.toString().substr(0,3), true, this.state.pageSize);
-			this.props.history.push('/search');			
+			this.props.history.push('/search');						
+		} else {
+			this.setState({showError: true})
+		}
 	}
 
 	render() {
@@ -69,7 +77,8 @@ class Landing extends Component {
 					<Row>
 						<Col>
 							<div style={{width: '200px', margin: 'auto'}}>
-								<Button style={{width: '100%'}} onClick={this.handleSearch} variant="success"><Link style={{color: 'white'}} to="/search">Search</Link></Button>
+								<Button style={{width: '100%'}} onClick={this.handleSearch} variant="success"><Link style={{color: 'white'}}>Search</Link></Button>
+								{this.state.showError ? <span style={{color: 'red'}}>Please select location and date</span> : null}
 							</div>
 						</Col>
 					</Row>
@@ -85,6 +94,6 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, { addSearch, initialiseCars })(
+export default connect(mapStateToProps, { addSearch, initialiseCars, resetState })(
   Landing
 );

@@ -1,4 +1,4 @@
-import { ADD_SEARCH, FILTER_SEARCH, FIND_SEARCH, INITIALISE_CARS, SORT_CARS, PAGE_CHANGE } from '../constants';
+import { ADD_SEARCH, FILTER_SEARCH, FIND_SEARCH, INITIALISE_CARS, SORT_CARS, PAGE_CHANGE, RESET_STATE } from '../constants';
 
 export const addSearch = (location,date, initSearch, pageSize) => {
 	const action = {
@@ -16,6 +16,13 @@ export const initialiseCars = (cars) => {
 		type: INITIALISE_CARS,
 		cars
 	};
+	return action;
+};
+
+export const resetState = () => {
+	const action = {
+		type: RESET_STATE,
+	}
 	return action;
 };
 

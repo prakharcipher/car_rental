@@ -1,4 +1,4 @@
-import {ADD_SEARCH, FILTER_SEARCH, FIND_SEARCH, INITIALISE_CARS, SORT_CARS, PAGE_CHANGE} from '../constants';
+import {ADD_SEARCH, FILTER_SEARCH, FIND_SEARCH, INITIALISE_CARS, SORT_CARS, PAGE_CHANGE, RESET_STATE} from '../constants';
 
 function searchUtility(carsList, action) {
 	const newCars = carsList.filter((car, index) => {
@@ -70,6 +70,13 @@ const paginate = (state = {}, action) => {
 // 	console.log("New carsssss ====== ", newCars);
 // 	return newCars;
 // }
+
+const resetfunction = (state = {}) => {
+	return {
+		location: '',
+		date: ''
+	}
+}
 
 function filterUtility(carList, filters) {
 	let validCount;
@@ -166,6 +173,10 @@ const cars = (state = {}, action) => {
 			return cars;
 		case FIND_SEARCH:
 			cars = findingQuery(state, action)
+			sessionStorage.setItem('cars', JSON.stringify(cars));
+			return cars;
+		case RESET_STATE:
+			cars = resetfunction(state)
 			sessionStorage.setItem('cars', JSON.stringify(cars));
 			return cars;
 		case SORT_CARS:
