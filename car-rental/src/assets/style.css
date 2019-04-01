@@ -76,6 +76,15 @@
 				top: 20%;
 				left: 0% !important;
 			}
+
+			.mobileFriendly {
+				width: 100% !important;
+				height: 28px !important;
+			}
+
+			.mobileDate {
+				margin: 0 !important;
+			}
     }
     @media only screen and (device-width: 768px) {
        /* default iPad screens */

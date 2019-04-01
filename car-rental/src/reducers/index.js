@@ -60,11 +60,11 @@ const resetfunction = (state = {}) => {
 }
 
 function filterUtility(carList, filters) {
-	let validCount;
+	// let validCount;
 
 	const newCars = carList.filter((car) => {
 		
-		validCount = 0;
+		// validCount = 0;
 		let carFlag = 0;
 		let transmissionFlag = 0;
 		let fuelFlag = 0;

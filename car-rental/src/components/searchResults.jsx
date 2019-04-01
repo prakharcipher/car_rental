@@ -27,7 +27,7 @@ class SearchResults extends Component {
 	}
 
 	handleClick = () => {
-		this.props.addSearch(this.state.location, this.state.date.toString().substr(0,3), false, this.state.pageLimit)
+		this.props.addSearch(this.state.location, this.state.date.toString(), false, this.state.pageLimit)
 	}
 
 	componentWillMount() {
@@ -51,6 +51,11 @@ class SearchResults extends Component {
 			      />
 			      {' Car-Rental'}
 			    </Navbar.Brand>
+			    <Navbar.Collapse className="justify-content-end">
+				    <Navbar.Text>
+				      Selected Date: <span style={{color: 'black'}}>{this.props.cars.date.substr(0,15)}</span>
+				    </Navbar.Text>
+				  </Navbar.Collapse>
 			  </Navbar>
 					<Row>
 						<Col>
@@ -66,7 +71,7 @@ class SearchResults extends Component {
 						<Col>
 							<Form.Group>
 								<label style={{marginRight: '5px'}}>Pick-up Date</label>							
-								<DatePicker onChange={this.handleDate} id="example-datepicker" selected={new Date()} minDate={new Date()} name="startDate" />
+								<DatePicker onChange={this.handleDate} id="example-datepicker" minDate={new Date()} name="startDate" />
 							</Form.Group>
 						</Col>
 						<Col>

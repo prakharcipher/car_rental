@@ -12,7 +12,7 @@ class Landing extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			startDate: '',
+			startDate: new Date(),
 			location: '',
 			pageSize: 6,
 			showError: false
@@ -38,9 +38,9 @@ class Landing extends Component {
 	}
 
 	handleSearch = () => {
-		if(this.state.location !== '' && this.state.date !== '') {
+		if(this.state.location !== '') {
 			this.setState({showError: false})
-			this.props.addSearch(this.state.location, this.state.startDate.toString().substr(0,3), true, this.state.pageSize);
+			this.props.addSearch(this.state.location, this.state.startDate.toString(), true, this.state.pageSize);
 			this.props.history.push('/search');						
 		} else {
 			this.setState({showError: true})
@@ -56,7 +56,7 @@ class Landing extends Component {
 						<label>Location</label>
 						<div>
 							<Form.Group>
-								<Form.Control style={{width: '30%', margin: 'auto', height: '25px'}} as="select" name="location" onChange={this.handleLocation}>
+								<Form.Control className="mobileFriendly" style={{width: '30%', margin: 'auto', height: '25px'}} as="select" name="location" onChange={this.handleLocation}>
 									<option value="">Select Pick-up Point</option>
 									<option value="Koramangala">Koramangala</option>
 									<option value="HSR Layout">HSR Layout</option>
@@ -68,8 +68,8 @@ class Landing extends Component {
 						<Col style={{textAlign: 'center'}}>
 						<label>Pick-up Date</label>
 						<div>
-							<Form.Group style={{width: '50%', margin: 'auto'}}>
-								<DatePicker id="example-datepicker" name="startDate" minDate={new Date()} onChange={this.handleStartDate} />
+							<Form.Group className="mobileDate" style={{width: '50%', margin: 'auto'}}>
+								<DatePicker id="example-datepicker" name="startDate" minDate={new Date()} onChange={this.handleStartDate} selected={this.state.startDate} />
 							</Form.Group>
 							</div>
 						</Col>

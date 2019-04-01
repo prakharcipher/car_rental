@@ -13,7 +13,7 @@ class Car extends Component {
 		const {carObj, selectedCar} = this.props;
 		return (
 				<Card bsPrefix="cardNew" border={selectedCar === carObj.name ? "primary" : ""} onClick={this.selectCar}>
-				{carObj.availability.indexOf(this.props.selectedDate) === -1 ? <Badge style={{position: 'absolute', left: '0%'}} variant="danger">Not Available</Badge> : null}
+				{carObj.availability.indexOf(this.props.selectedDate.substr(0,3)) === -1 ? <Badge style={{position: 'absolute', left: '0%'}} variant="danger">Not Available</Badge> : null}
 			    <Card.Img variant="top" src={carObj.photo} />
 			    <Card.Body>
 			      <Card.Title>{carObj.name}</Card.Title>
